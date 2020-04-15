@@ -1,0 +1,10 @@
+.postsBlock{
+   margin-top: 35px;
+   margin-left: 15px;   
+}
+.textAreaPost{
+   border: 1px solid gray;
+   margin: 15px 0 5px 0;
+   width: 85%;
+   height: 50px;
+}

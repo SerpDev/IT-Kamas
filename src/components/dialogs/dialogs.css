@@ -1,0 +1,22 @@
+.dialogs{
+   display: flex;
+}
+.dialogs-items{
+   padding: 10px 20px;
+}
+
+.messages{
+   padding: 10px 20px;
+}
+.item{
+   padding: 10px 0;
+}
+.textAreaMess{
+   border: 1px solid gray;
+   margin: 15px 0 5px 0;
+   width: 85%;
+   height: 50px;
+}
+.messBlock{
+   margin-left: 25px;
+} 

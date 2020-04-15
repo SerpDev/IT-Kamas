@@ -1,0 +1,19 @@
+.navBar{
+   grid-area: navBar;
+   background-color: #e0e0e0;
+}
+.navBar li a{
+   font-size: 25px;
+   color: red;
+   margin-bottom: 10px;
+   cursor: pointer;
+}
+.navBar ul li{
+   padding: 5px 20px;
+}
+.navBar li:last-child{
+   margin-top: 40px;
+}
+.navBar li a.active{
+   color: goldenrod;
+}

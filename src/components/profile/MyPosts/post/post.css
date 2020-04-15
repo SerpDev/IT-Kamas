@@ -1,0 +1,9 @@
+img {
+  width: 50px;
+}
+.post {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15px 0px;
+}

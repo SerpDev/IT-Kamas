@@ -1,0 +1,9 @@
+.App {
+  max-width: 960px;
+  display: grid;
+  grid-template-areas:
+    "header header header header header header"
+    "navBar cont cont cont cont cont";
+ margin: 0 auto;
+ padding: 10px 10px;
+}

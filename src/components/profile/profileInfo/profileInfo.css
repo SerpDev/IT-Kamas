@@ -1,0 +1,21 @@
+.contBlock{
+   display: flex;
+   margin-top: 4%;
+   font-size: 18px;
+   color: lightslategrey;
+}
+.ava img{
+   width: 100px;
+   height: 100px;
+}
+.ava{
+   margin-right: 5%;
+}
+.name{
+   font-size: 24px;
+   margin-bottom: 10px;
+}
+/* .posts{
+   display: flex;
+   flex-direction: column;
+} */
