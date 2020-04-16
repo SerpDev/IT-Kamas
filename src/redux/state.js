@@ -38,10 +38,6 @@ let store = {
     this._callSubscriber = observer;
   },
 
-  // addPost() {},
-
-  // updateNewPostText(newText) {},
-
   addMessage() {
     let newMess = {
       id: 5,
@@ -72,6 +68,19 @@ let store = {
       this._callSubscriber(this._state);
     }
   },
+};
+
+export let addPostActionCreator = () => {
+  return {
+    type: "ADD-POST",
+  };
+};
+
+export let updateNewPostActionCreator = (text) => {
+  return {
+    type: "UPDATE-NEW-POST-TEXT",
+    newText: text,
+  };
 };
 
 export default store;

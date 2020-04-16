@@ -5,11 +5,13 @@ import Message from "./message/Message";
 
 const Dialogs = (props) => {
   let dialogsElement = props.dialogsPage.dialogsData.map((item) => {
-    return <DialogItem name={item.name} id={item.id}></DialogItem>;
+    return (
+      <DialogItem key={item.id} name={item.name} id={item.id}></DialogItem>
+    );
   });
 
   let messElement = props.dialogsPage.messagesData.map((item) => {
-    return <Message message={item.message} />;
+    return <Message key={item.id} message={item.message} />;
   });
 
   let newMessElement = React.createRef();
@@ -21,7 +23,7 @@ const Dialogs = (props) => {
   let onMessChange = () => {
     let text = newMessElement.current.value;
     props.updateNewMess(text);
-  };
+  }; 
 
   return (
     <div>
