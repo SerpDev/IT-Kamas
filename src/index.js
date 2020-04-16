@@ -1,31 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import state, { subscribe } from "./redux/state";
+import store from "./redux/state";
 import App from "./App";
-import {
-  addPost,
-  updateNewPostText,
-  addMessage,
-  updateNewMess,
-} from "./redux/state";
 import { BrowserRouter } from "react-router-dom";
 
-let rerenderEntireThree = (state) => {
+let _callSubscriber = (state) => {
   ReactDOM.render(
     <BrowserRouter>
       <App
-      
         state={state}
-        addPost={addPost}
-        updateNewPostText={updateNewPostText}
-        addMessage={addMessage}
-        updateNewMess={updateNewMess}
+        addPost={store.addPost.bind(store)}
+        updateNewPostText={store.updateNewPostText.bind(store)}
+        addMessage={store.addMessage.bind(store)}
+        updateNewMess={store.updateNewMess.bind(store)}
       />
     </BrowserRouter>,
     document.getElementById("root")
   );
 };
 
-rerenderEntireThree(state);
-subscribe(rerenderEntireThree);
+_callSubscriber(store.getState());
+store.subscribe(_callSubscriber);
