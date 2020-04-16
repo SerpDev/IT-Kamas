@@ -1,5 +1,5 @@
 let store = {
-  _state : {
+  _state: {
     profilePage: {
       postsData: [
         { id: 1, message: "Hello", likeCount: "15" },
@@ -7,7 +7,7 @@ let store = {
         { id: 3, message: "normal", likeCount: "65" },
         { id: 4, message: "Ok, bye!=)", likeCount: "17" },
       ],
-      newPostText : 'Введите текст',
+      newPostText: "Введите текст",
     },
     dialogsPage: {
       dialogsData: [
@@ -22,49 +22,57 @@ let store = {
         { id: 3, message: "Все ок" },
         { id: 4, message: "Пока" },
       ],
-      newMessagesText : 'учи фронт'
+      newMessagesText: "учи фронт",
     },
   },
-  getState(){
+
+  _callSubscriber() {
+    console.log("state changed");
+  },
+
+  getState() {
     return this._state;
   },
-  _callSubscriber  () {
-    console.log('state changed');
-  },
-  addPost () {
-    let newPost = {
-      id: 5,
-      message: this._state.profilePage.newPostText,
-      likeCount: 0,
-    };
-    this._state.profilePage.postsData.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber(this._state);
-  },
-  updateNewPostText (newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
-  addMessage () {
 
+  subscribe(observer) {
+    this._callSubscriber = observer;
+  },
+
+  // addPost() {},
+
+  // updateNewPostText(newText) {},
+
+  addMessage() {
     let newMess = {
-      id : 5,
-      message : this._state.dialogsPage.newMessagesText,
+      id: 5,
+      message: this._state.dialogsPage.newMessagesText,
     };
     this._state.dialogsPage.messagesData.push(newMess);
     this._state.dialogsPage.newMessagesText = "";
     this._callSubscriber(this._state);
   },
-  updateNewMess (newText) {
+
+  updateNewMess(newText) {
     this._state.dialogsPage.newMessagesText = newText;
     this._callSubscriber(this._state);
   },
 
-  subscribe (observer) {
-    this._callSubscriber = observer;
+  dispatch(action) {
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: 5,
+        message: this._state.profilePage.newPostText,
+        likeCount: 0,
+      };
+      this._state.profilePage.postsData.push(newPost);
+      this._state.profilePage.newPostText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    }
   },
-}
-
+};
 
 export default store;
 window.store = store;
