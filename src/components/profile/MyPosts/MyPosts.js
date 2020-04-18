@@ -11,7 +11,7 @@ const MyPosts = (props) => {
     return (
       <Post key={item.id} message={item.message} likeCount={item.likeCount} />
     );
-  }); 
+  });
 
   let newPostElement = React.createRef();
 

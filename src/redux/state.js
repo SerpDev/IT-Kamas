@@ -1,3 +1,6 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+
 let store = {
   _state: {
     profilePage: {
@@ -39,30 +42,10 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === "ADD-POST") {
-      let newPost = {
-        id: 5,
-        message: this._state.profilePage.newPostText,
-        likeCount: 0,
-      };
-      this._state.profilePage.postsData.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type === "ADD-MESSAGE") {
-      let newMess = {
-        id: 5,
-        message: this._state.dialogsPage.newMessagesText,
-      };
-      this._state.dialogsPage.messagesData.push(newMess);
-      this._state.dialogsPage.newMessagesText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === "UPDATE-NEW-MESS") {
-      this._state.dialogsPage.newMessagesText = action.newText;
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+    this._callSubscriber(this._state)
   },
 };
 
@@ -80,7 +63,7 @@ export let updateNewPostActionCreator = (text) => {
 };
 export let addMessActionCreator = () => {
   return {
-    type: "ADD-MESSAGE"
+    type: "ADD-MESSAGE",
   };
 };
 export let updateNewMessActionCreator = (text) => {

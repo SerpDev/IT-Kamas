@@ -2,7 +2,10 @@ import React from "react";
 import "./dialogs.css";
 import DialogItem from "./dialogsItem/DialogItem";
 import Message from "./message/Message";
-import { addMessActionCreator, updateNewMessActionCreator } from "../../redux/state";
+import {
+  addMessActionCreator,
+  updateNewMessActionCreator,
+} from "../../redux/state";
 
 const Dialogs = (props) => {
   let dialogsElement = props.dialogsPage.dialogsData.map((item) => {
@@ -18,13 +21,13 @@ const Dialogs = (props) => {
   let newMessElement = React.createRef();
 
   let addMessage = () => {
-    props.dispatch(addMessActionCreator())
+    props.dispatch(addMessActionCreator());
   };
 
   let onMessChange = () => {
     let text = newMessElement.current.value;
     props.dispatch(updateNewMessActionCreator(text));
-  }; 
+  };
 
   return (
     <div>
