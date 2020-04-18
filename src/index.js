@@ -1,18 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import store from "./redux/state";
+import store from "./redux/redux-store";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-let _callSubscriber = (state) => {
+let rerenderEntireThree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={state} dispatch={store.dispatch.bind(store)} />
+      <App store={store}/>
     </BrowserRouter>,
     document.getElementById("root")
   );
 };
 
-_callSubscriber(store.getState());
-store.subscribe(_callSubscriber);
+rerenderEntireThree(store.getState());
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireThree(state);
+});
