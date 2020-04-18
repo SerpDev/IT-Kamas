@@ -38,21 +38,6 @@ let store = {
     this._callSubscriber = observer;
   },
 
-  addMessage() {
-    let newMess = {
-      id: 5,
-      message: this._state.dialogsPage.newMessagesText,
-    };
-    this._state.dialogsPage.messagesData.push(newMess);
-    this._state.dialogsPage.newMessagesText = "";
-    this._callSubscriber(this._state);
-  },
-
-  updateNewMess(newText) {
-    this._state.dialogsPage.newMessagesText = newText;
-    this._callSubscriber(this._state);
-  },
-
   dispatch(action) {
     if (action.type === "ADD-POST") {
       let newPost = {
@@ -65,6 +50,17 @@ let store = {
       this._callSubscriber(this._state);
     } else if (action.type === "UPDATE-NEW-POST-TEXT") {
       this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    } else if (action.type === "ADD-MESSAGE") {
+      let newMess = {
+        id: 5,
+        message: this._state.dialogsPage.newMessagesText,
+      };
+      this._state.dialogsPage.messagesData.push(newMess);
+      this._state.dialogsPage.newMessagesText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-NEW-MESS") {
+      this._state.dialogsPage.newMessagesText = action.newText;
       this._callSubscriber(this._state);
     }
   },
@@ -79,6 +75,17 @@ export let addPostActionCreator = () => {
 export let updateNewPostActionCreator = (text) => {
   return {
     type: "UPDATE-NEW-POST-TEXT",
+    newText: text,
+  };
+};
+export let addMessActionCreator = () => {
+  return {
+    type: "ADD-MESSAGE"
+  };
+};
+export let updateNewMessActionCreator = (text) => {
+  return {
+    type: "UPDATE-NEW-MESS",
     newText: text,
   };
 };

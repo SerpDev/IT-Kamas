@@ -16,8 +16,7 @@ const App = (props) => {
         render={() => (
           <Dialogs
             dialogsPage={props.state.dialogsPage}
-            addMessage={props.addMessage}
-            updateNewMess={props.updateNewMess}
+            dispatch={props.dispatch}
           />
         )}
       />

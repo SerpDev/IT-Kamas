@@ -11,8 +11,8 @@ let _callSubscriber = (state) => {
       <App
         state={state}
         dispatch={store.dispatch.bind(store)}
-        addMessage={store.addMessage.bind(store)}
-        updateNewMess={store.updateNewMess.bind(store)}
+        // addMessage={store.addMessage.bind(store)}
+        // updateNewMess={store.updateNewMess.bind(store)}
       />
     </BrowserRouter>,
     document.getElementById("root")
