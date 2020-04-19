@@ -1,33 +1,29 @@
 import React from "react";
-import "./dialogs.css";
 import DialogItem from "./dialogsItem/DialogItem";
 import Message from "./message/Message";
-import {
-  addMessActionCreator,
-  updateNewMessActionCreator,
-} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
-  debugger;
-  let dialogsElement = props.store.getState().dialogsReducer.dialogsData.map((item) => {
+  let state = props.state;
+ 
+  let dialogsElement = state.dialogsReducer.dialogsData.map((item) => {
     return (
       <DialogItem key={item.id} name={item.name} id={item.id}></DialogItem>
     );
   });
 
-  let messElement = props.store.getState().dialogsReducer.messagesData.map((item) => {
+  let messElement = state.dialogsReducer.messagesData.map((item) => {
     return <Message key={item.id} message={item.message} />;
   });
 
   let newMessElement = React.createRef();
 
   let addMessage = () => {
-    props.store.dispatch(addMessActionCreator());
+    props.addMessage();
   };
 
   let onMessChange = () => {
     let text = newMessElement.current.value;
-    props.store.dispatch(updateNewMessActionCreator(text));
+    props.onMessChange(text);
   };
 
   return (
@@ -41,7 +37,7 @@ const Dialogs = (props) => {
           className="textAreaMess"
           ref={newMessElement}
           onChange={onMessChange}
-          value={props.store.getState().dialogsReducer.newMessagesText}
+          value={state.dialogsReducer.newMessagesText}
         ></textarea>
         <div></div>
         <input type="submit" onClick={addMessage} value="Отправить"></input>

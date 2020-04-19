@@ -5,7 +5,7 @@ import store from "./redux/redux-store";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-let rerenderEntireThree = () => {
+let rerenderEntireThree = (state) => {
   ReactDOM.render(
     <BrowserRouter>
       <App store={store}/>
