@@ -5,7 +5,7 @@ import Post from "./post/Post";
 const MyPosts = (props) => {
 
   let state = props.state;
-  let postsElem = state.profileReducer.postsData.map((item) => {
+  let postsElem = state.postsData.map((item) => {
     return (
       <Post key={item.id} message={item.message} likeCount={item.likeCount} />
     );
@@ -30,7 +30,7 @@ const MyPosts = (props) => {
           className="textAreaPost"
           ref={newPostElement}
           onChange={onPostChange}
-          value={state.profileReducer.newPostText}
+          value={state.newPostText}
         ></textarea>
         <div></div>
         <input type="submit" onClick={addPost} value="Отправить"></input>

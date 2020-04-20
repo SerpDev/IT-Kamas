@@ -5,13 +5,13 @@ import Message from "./message/Message";
 const Dialogs = (props) => {
   let state = props.state;
  
-  let dialogsElement = state.dialogsReducer.dialogsData.map((item) => {
+  let dialogsElement = state.dialogsData.map((item) => {
     return (
       <DialogItem key={item.id} name={item.name} id={item.id}></DialogItem>
     );
   });
 
-  let messElement = state.dialogsReducer.messagesData.map((item) => {
+  let messElement = state.messagesData.map((item) => {
     return <Message key={item.id} message={item.message} />;
   });
 
@@ -37,7 +37,7 @@ const Dialogs = (props) => {
           className="textAreaMess"
           ref={newMessElement}
           onChange={onMessChange}
-          value={state.dialogsReducer.newMessagesText}
+          value={state.newMessagesText}
         ></textarea>
         <div></div>
         <input type="submit" onClick={addMessage} value="Отправить"></input>

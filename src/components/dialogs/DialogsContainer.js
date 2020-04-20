@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 
 let mapStateToProps = (state) => {
   return {
-    state: state,
-  };
+    state: state.dialogsReducer,
+  }; 
 };
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    addMessage: () => {
+    addMessage: () => { 
       dispatch(addMessActionCreator());
     },
     onMessChange: (body) => {
