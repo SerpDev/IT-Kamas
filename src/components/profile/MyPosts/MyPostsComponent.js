@@ -4,20 +4,31 @@ import {
   updateNewPostActionCreator,
 } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import StoreContext from "../../../StoreContext";
 
 const MyPostsComponent = (props) => {
-  let state = props.store.getState();
-
-  let addPost = () => {
-    props.store.dispatch(addPostActionCreator());
-  };
-
-  let onPostChange = (body) => {
-    props.store.dispatch(updateNewPostActionCreator(body));
-  };
 
   return (
-    <MyPosts state={state} addPost={addPost} onPostChange={onPostChange} />
+    <StoreContext.Consumer>
+      {(store) => {
+        let state = store.getState();
+        let addPost = () => {
+          store.dispatch(addPostActionCreator());
+        };
+
+        let onPostChange = (body) => {
+          store.dispatch(updateNewPostActionCreator(body));
+        };
+
+        return (
+          <MyPosts
+            state={state}
+            addPost={addPost}
+            onPostChange={onPostChange}
+          />
+        );
+      }}
+    </StoreContext.Consumer>
   );
 };
 export default MyPostsComponent;

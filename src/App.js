@@ -13,11 +13,11 @@ const App = (props) => {
       <NavBar />
       <Route
         path="/dialogs"
-        render={() => <DialogsComponent store={props.store} />}
+        render={() => <DialogsComponent />}
       />
       <Route
         path="/profile"
-        render={() => <Profile store={props.store} />}
+        render={() => <Profile />}
       />
     </div>
   );

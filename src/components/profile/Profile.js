@@ -8,7 +8,7 @@ const Profile = (props) => {
     <div className="profile">
       <div className="bgImg"></div>
       <ProfileInfo />
-      <MyPostsComponent store={props.store} />
+      <MyPostsComponent />
     </div>
   );
 };
