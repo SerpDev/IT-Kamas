@@ -19,6 +19,9 @@ const NavBar = () => {
           <NavLink to="/music">Music</NavLink>
         </li>
         <li>
+          <NavLink to="/users">Users </NavLink>
+        </li>
+        <li>
           <NavLink to="/settings">Settings</NavLink>
         </li>
       </ul>

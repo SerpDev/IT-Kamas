@@ -9,7 +9,7 @@ let initialState = {
     { id: 4, message: "Ok, bye!=)", likeCount: "17" },
   ],
   newPostText: "Введите текст",
-};
+}; 
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ const profileReducer = (state = initialState, action) => {
         newPostText: "",
         postsData: [
           ...state.postsData,
-          { id: 5, message: state.newPostText, likeCount: 0 },
+          { id: 6, message: state.newPostText, likeCount: 0 },
         ],
       };
     }

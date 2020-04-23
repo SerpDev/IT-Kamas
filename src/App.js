@@ -5,6 +5,7 @@ import NavBar from "./components/navBar/NavBar";
 import Profile from "./components/profile/Profile";
 import { Route } from "react-router-dom";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
+import UsersContainer from './components/users/UsersContainer';
 
 const App = (props) => {
   return (
@@ -18,6 +19,10 @@ const App = (props) => {
       <Route
         path="/profile"
         render={() => <Profile />}
+      />
+      <Route
+        path="/users"
+        render={() => <UsersContainer/>}
       />
     </div>
   );
