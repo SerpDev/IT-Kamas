@@ -52,7 +52,7 @@ export let unFollowAC = (userId) => {
 export let setUsersAC = (users) => {
   return {
     type: SET_USERS,
-    users
+    users,
   };
 };
 export default usersReducer;
