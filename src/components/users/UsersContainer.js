@@ -1,36 +1,34 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  followAC,
-  unFollowAC,
-  setUsersAC,
-  setCurrentPageAC,
-  setUsersTotalCountAC,
-  toogleLoaderAC,
+  follow,
+  unFollow,
+  setUsers,
+  setCurrentPage,
+  setUsersTotalCount,
+  toogleLoader,
 } from "../../redux/users-reduser";
-import Axios from "axios";
 import Users from "./Users";
 import Loader from "../loader/loader";
+import { getUsers } from "../../api/api";
 
 class UsersContainer extends Component {
   componentDidMount() {
     this.props.toogleLoader(true);
-    Axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`
-    ).then((response) => {
-      this.props.toogleLoader(false);
-      this.props.setUsers(response.data.items);
-      this.props.setUsersTotalCount(response.data.totalCount);
-    });
+    getUsers(this.props.state.currentPage, this.props.state.pageSize).then(
+      (data) => {
+        this.props.toogleLoader(false);
+        this.props.setUsers(data.items);
+        this.props.setUsersTotalCount(data.totalCount);
+      }
+    );
   }
   onPageCanged = (pageNum) => {
     this.props.setCurrentPage(pageNum);
     this.props.toogleLoader(true);
-    Axios.get(
-      `https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.state.pageSize}`
-    ).then((response) => {
+    getUsers(pageNum, this.props.state.pageSize).then((data) => {
       this.props.toogleLoader(false);
-      this.props.setUsers(response.data.items);
+      this.props.setUsers(data.items);
     });
   };
 
@@ -61,27 +59,11 @@ let mapStatetoProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followAC(userId));
-    },
-    unFollow: (userId) => {
-      dispatch(unFollowAC(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users));
-    },
-    setCurrentPage: (pageNum) => {
-      dispatch(setCurrentPageAC(pageNum));
-    },
-    setUsersTotalCount: (totalCountUsers) => {
-      dispatch(setUsersTotalCountAC(totalCountUsers));
-    },
-    toogleLoader: (isFetching) => {
-      dispatch(toogleLoaderAC(isFetching));
-    },
-  };
-};
-
-export default connect(mapStatetoProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStatetoProps, {
+  follow,
+  unFollow,
+  setUsers,
+  setCurrentPage,
+  setUsersTotalCount,
+  toogleLoader,
+})(UsersContainer);

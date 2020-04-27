@@ -53,37 +53,37 @@ const usersReducer = (state = initialState, action) => {
       return state;
   }
 };
-export let followAC = (userId) => {
+export let follow = (userId) => {
   return {
     type: FOLLOW_AC,
     userId,
   };
 };
-export let unFollowAC = (userId) => {
+export let unFollow = (userId) => {
   return {
     type: UN_FOLLOW_AC,
     userId,
   };
 };
-export let setUsersAC = (users) => {
+export let setUsers = (users) => {
   return {
     type: SET_USERS,
     users,
   };
 };
-export let setCurrentPageAC = (currentPage) => {
+export let setCurrentPage = (currentPage) => {
   return {
     type: SET_CURRENT_PAGE,
     currentPage
   };
 };
-export let setUsersTotalCountAC = (totalUsersCount) => {
+export let setUsersTotalCount = (totalUsersCount) => {
   return {
     type: SET_USERS_TOTAL_COUNT,
     totalUsersCount
   };
 };
-export let toogleLoaderAC = (isFetching) => {
+export let toogleLoader = (isFetching) => {
   return {
     type: TOOGLE_LOADER,
     isFetching

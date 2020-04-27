@@ -1,8 +1,10 @@
 .profile{
    grid-area: cont;
    margin-left: 2%;
+   width: 100%;
 }
 .bgImg{
    background: url(../../images/header-bg-1024x659.jpg) no-repeat;
    height: 100px;
+   width: 100%;
 }

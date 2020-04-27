@@ -1,21 +1,30 @@
 import React from "react";
 import "./profileInfo.css";
-import ava from '../../../images/ava.png'
-
+import Loader from "../../loader/loader";
+import defFoto from "../../../images/defFoto.jpg";
 const ProfileInfo = (props) => {
+  if (!props.profile) {
+    return <Loader />;
+  }
   return (
     <div className="profileInfo">
       <div className="userInfo">
         <div className="contBlock">
           <div className="ava">
-            <img src={ava} alt=""></img>
+            {props.profile.photos.large == null ? (
+              <img src={defFoto} alt=""></img>
+            ) : (
+              <img src={props.profile.photos.large} alt=""></img>
+            )}
           </div>
           <div>
-            <div className="name">Arthur H.</div>
-            <div>Date of Birth: 2.10.1987</div>
-            <div>City: Vinnitsya</div>
-            <div>Education: UKN`11</div>
-            <div>Web Site: https://mySite.com</div>
+            <div className="name">Name: {props.profile.fullName}</div>
+            <div>{props.profile.aboutMe}</div>
+            <div>Twitter: {props.profile.contacts.twitter}</div>
+            <div>github: {props.profile.contacts.github}</div>
+            <div>
+              What you find job: {props.profile.lookingForAJobDescription}
+            </div>
           </div>
         </div>
       </div>

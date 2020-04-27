@@ -1,6 +1,9 @@
 import React from "react";
 import defFoto from "../../images/defFoto.jpg";
 import "./users.css";
+import { NavLink } from "react-router-dom";
+import { unFollowAPI } from "../../api/api";
+import { followAPI } from "./../../api/api";
 
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) / 100;
@@ -16,15 +19,21 @@ let Users = (props) => {
           <div>
             <span>{user.name}</span>
           </div>
-          <img
-            src={user.photos.small != null ? user.photos.small : defFoto}
-            alt=""
-          ></img>
+          <NavLink to={"/profile/" + user.id}>
+            <img
+              src={user.photos.small != null ? user.photos.small : defFoto}
+              alt=""
+            ></img>
+          </NavLink>
         </div>
         {user.followed ? (
           <button
             onClick={() => {
-              props.unFollow(user.id);
+              unFollowAPI(user.id).then((data) => {
+                if (data.resultCode === 0) {
+                  props.unFollow(user.id);
+                }
+              });
             }}
           >
             Unfollow
@@ -32,7 +41,11 @@ let Users = (props) => {
         ) : (
           <button
             onClick={() => {
-              props.follow(user.id);
+              followAPI(user.id).then((data) => {
+                if (data.resultCode === 0) {
+                  props.follow(user.id);
+                }
+              });
             }}
           >
             Follow
@@ -46,7 +59,8 @@ let Users = (props) => {
       <div>
         {pages.map((p) => {
           return (
-            <span key={p}
+            <span
+              key={p}
               className={props.currentPage === p ? "boldPage" : "undefined"}
               onClick={() => {
                 props.onPageCanged(p);
