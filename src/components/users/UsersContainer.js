@@ -1,51 +1,44 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
-  follow,
   unFollow,
-  setUsers,
+  follow,
   setCurrentPage,
-  setUsersTotalCount,
-  toogleLoader,
+  toogleIsFollowingProgress,
+  getUsers,
 } from "../../redux/users-reduser";
 import Users from "./Users";
 import Loader from "../loader/loader";
-import { getUsers } from "../../api/api";
 
 class UsersContainer extends Component {
   componentDidMount() {
-    this.props.toogleLoader(true);
-    getUsers(this.props.state.currentPage, this.props.state.pageSize).then(
-      (data) => {
-        this.props.toogleLoader(false);
-        this.props.setUsers(data.items);
-        this.props.setUsersTotalCount(data.totalCount);
-      }
+    this.props.getUsers(
+      this.props.state.currentPage,
+      this.props.state.pageSize
     );
   }
   onPageCanged = (pageNum) => {
-    this.props.setCurrentPage(pageNum);
-    this.props.toogleLoader(true);
-    getUsers(pageNum, this.props.state.pageSize).then((data) => {
-      this.props.toogleLoader(false);
-      this.props.setUsers(data.items);
-    });
+    this.props.getUsers(
+      pageNum,
+      this.props.state.pageSize
+    );
   };
 
   render() {
     return (
       <>
-        {this.props.state.isFetching ? (
+        {!this.props.state.isFetching ? (
           <Loader />
         ) : (
           <Users
+            follow={this.props.follow}
+            unFollow={this.props.unFollow}
             onPageCanged={this.onPageCanged}
             totalUsersCount={this.props.state.totalUsersCount}
             pageSize={this.props.state.pageSize}
             users={this.props.state.users}
-            unFollow={this.props.unFollow}
-            follow={this.props.follow}
             currentPage={this.props.state.currentPage}
+            followingInProgres={this.props.state.followingInProgres}
           />
         )}
       </>
@@ -62,8 +55,7 @@ let mapStatetoProps = (state) => {
 export default connect(mapStatetoProps, {
   follow,
   unFollow,
-  setUsers,
   setCurrentPage,
-  setUsersTotalCount,
-  toogleLoader,
+  toogleIsFollowingProgress,
+  getUsers,
 })(UsersContainer);
