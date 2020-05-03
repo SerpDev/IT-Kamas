@@ -1,9 +1,10 @@
 import React from "react";
 import defFoto from "../../images/defFoto.jpg";
 import "./users.css";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 let Users = (props) => {
+  debugger
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) / 100;
   let pages = [];
   for (let i = 1; i < pagesCount + 1; i++) {
@@ -46,6 +47,8 @@ let Users = (props) => {
       </div>
     );
   });
+
+
   return (
     <div className="findUsers">
       <div>

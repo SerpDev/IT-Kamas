@@ -9,6 +9,7 @@ import {
 } from "../../redux/users-reduser";
 import Users from "./Users";
 import Loader from "../loader/loader";
+import { Redirect } from "react-router-dom";
 
 class UsersContainer extends Component {
   componentDidMount() {
@@ -18,13 +19,13 @@ class UsersContainer extends Component {
     );
   }
   onPageCanged = (pageNum) => {
-    this.props.getUsers(
-      pageNum,
-      this.props.state.pageSize
-    );
+    this.props.getUsers(pageNum, this.props.state.pageSize);
   };
 
   render() {
+    if (!this.props.isAuth) {
+      return <Redirect to="/login" />;
+    }
     return (
       <>
         {!this.props.state.isFetching ? (
@@ -49,6 +50,7 @@ class UsersContainer extends Component {
 let mapStatetoProps = (state) => {
   return {
     state: state.usersReducer,
+    isAuth: state.authReducer.isAuth,
   };
 };
 
