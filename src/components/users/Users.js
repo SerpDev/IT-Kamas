@@ -4,7 +4,6 @@ import "./users.css";
 import { NavLink } from "react-router-dom";
 
 let Users = (props) => {
-  debugger
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize) / 100;
   let pages = [];
   for (let i = 1; i < pagesCount + 1; i++) {
