@@ -1,7 +1,5 @@
 import Axios from "axios";
 
-// const baseURL = "https://social-network.samuraijs.com/api/1.0/";
-
 const instance = Axios.create({
   withCredentials: true,
   baseURL: "https://social-network.samuraijs.com/api/1.0/",

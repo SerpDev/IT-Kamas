@@ -5,17 +5,19 @@ import {
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
+import { withAuthRedirect } from "./../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
   return {
     state: state.dialogsReducer,
     isAuth: state.authReducer.isAuth,
-  }; 
+  };
 };
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    addMessage: () => { 
+    addMessage: () => {
       dispatch(addMessActionCreator());
     },
     onMessChange: (body) => {
@@ -24,6 +26,8 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-let DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
-export default DialogsContainer;
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withAuthRedirect
+)(Dialogs);

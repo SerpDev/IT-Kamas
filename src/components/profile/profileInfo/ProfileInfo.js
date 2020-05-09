@@ -2,6 +2,8 @@ import React from "react";
 import "./profileInfo.css";
 import Loader from "../../loader/loader";
 import defFoto from "../../../images/defFoto.jpg";
+import ProfileStatus from './ProfileStatus';
+
 const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Loader />;
@@ -27,6 +29,7 @@ const ProfileInfo = (props) => {
             </div>
           </div>
         </div>
+        <ProfileStatus status={'hello'}/>
       </div>
     </div>
   );
