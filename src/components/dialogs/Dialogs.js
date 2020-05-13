@@ -1,6 +1,28 @@
 import React from "react";
 import DialogItem from "./dialogsItem/DialogItem";
 import Message from "./message/Message";
+import { reduxForm, Field } from "redux-form";
+
+const DialogsForm = (props) => {
+  return (
+    <div className="dialogsForm">
+      <form onSubmit={props.handleSubmit}>
+        <Field
+          name={"messText"}
+          component={"textarea"}
+          placeholder={"Enter your message"}
+        ></Field>
+        <div></div>
+        <button
+          type="submit"
+        >Отправить</button>
+      </form>
+    </div>
+  );
+};
+const DialogsReduxForm = reduxForm({
+  form: "dialog",
+})(DialogsForm);
 
 const Dialogs = (props) => {
   let state = props.state;
@@ -15,16 +37,10 @@ const Dialogs = (props) => {
     return <Message key={item.id} message={item.message} />;
   });
 
-  let newMessElement = React.createRef();
-
-  let addMessage = () => {
-    props.addMessage();
-  };
-
-  let onMessChange = () => {
-    let text = newMessElement.current.value;
-    props.onMessChange(text);
-  };
+  let addNewMessage = (values) => {
+    props.addMessage(values.messText);
+    
+  }
 
   return (
     <div>
@@ -33,14 +49,11 @@ const Dialogs = (props) => {
         <div className="messages">{messElement}</div>
       </div>
       <div className="messBlock">
-        <textarea
-          className="textAreaMess"
-          ref={newMessElement}
-          onChange={onMessChange}
-          value={state.newMessagesText}
-        ></textarea>
-        <div></div>
-        <input type="submit" onClick={addMessage} value="Отправить"></input>
+        <DialogsReduxForm onSubmit={addNewMessage}
+          // addMessage={addMessage}
+          // onMessChange={onMessChange}
+          // newMessElement={newMessElement}
+        />
       </div>
     </div>
   );

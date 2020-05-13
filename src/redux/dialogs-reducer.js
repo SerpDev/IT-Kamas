@@ -1,5 +1,4 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_NEW_MESS = "UPDATE-NEW-MESS";
 
 let initialState = {
   dialogsData: [
@@ -14,7 +13,6 @@ let initialState = {
     { id: 3, message: "Все ок" },
     { id: 4, message: "Пока" },
   ],
-  newMessagesText: "учи фронт",
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -22,30 +20,21 @@ const dialogsReducer = (state = initialState, action) => {
     case ADD_MESSAGE: {
       return {
         ...state,
-        newMessagesText: "",
         messagesData: [
           ...state.messagesData,
-          { id: 6, message: state.newMessagesText },
+          { id: 6, message: action.messText },
         ],
       };
-    }
-    case UPDATE_NEW_MESS: {
-      return { ...state, newMessagesText: action.newText };
     }
     default:
       return state;
   }
 };
 
-export let addMessActionCreator = () => {
+export let addMessActionCreator = (messText) => {
   return {
     type: ADD_MESSAGE,
-  };
-};
-export let updateNewMessActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_MESS,
-    newText: text,
+    messText
   };
 };
 
