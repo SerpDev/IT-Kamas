@@ -2,7 +2,7 @@ import React from "react";
 import "./profileInfo.css";
 import Loader from "../../loader/loader";
 import defFoto from "../../../images/defFoto.jpg";
-import ProfileStatus from './ProfileStatus';
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -21,6 +21,13 @@ const ProfileInfo = (props) => {
           </div>
           <div>
             <div className="name">Name: {props.profile.fullName}</div>
+            <div className='status'>
+              <ProfileStatus
+                status={props.status}
+                updateStatus={props.updateStatus}
+              />
+            </div>
+
             <div>{props.profile.aboutMe}</div>
             <div>Twitter: {props.profile.contacts.twitter}</div>
             <div>github: {props.profile.contacts.github}</div>
@@ -29,7 +36,6 @@ const ProfileInfo = (props) => {
             </div>
           </div>
         </div>
-        <ProfileStatus status={'hello'}/>
       </div>
     </div>
   );
