@@ -1,10 +1,26 @@
-.users img {
-  width: 150px;
-  height: 150px;
+.usersContainer {
+  display: inline-flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
-.users button{
-   padding: 10px;
-   margin: 10px;
+.users{
+  padding: 20px;
+  border: 1px solid burlywood;
+  margin: 20px;
+  border-radius: 10px;
+}
+.users:hover{
+  box-shadow: inset 0 0 0 3px burlywood;
+  transform: scale(1.05);
+}
+.users img {
+  width: 175px;
+  height: 175px;
+}
+.users button {
+  padding: 10px;
+  margin: 10px;
 }
 .boldPage {
   font-weight: bold;
