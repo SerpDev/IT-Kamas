@@ -25,16 +25,26 @@ export const profileApi = {
   getProfileUser: (id) => {
     return instance.get(`profile/${id}`).then((response) => response.data);
   },
-  getStatus : (userId) => {
-    return instance.get(`profile/status/${userId}`).then((response) => response.data);
+  getStatus: (userId) => {
+    return instance
+      .get(`profile/status/${userId}`)
+      .then((response) => response.data);
   },
-  updateStatus : (status) => {
-    return instance.put(`profile/status`, {status}).then((response) => response.data);
-  }
+  updateStatus: (status) => {
+    return instance
+      .put(`profile/status`, { status })
+      .then((response) => response.data);
+  },
 };
 
 export const headerAuthAPI = {
   me: () => {
     return instance.get("auth/me");
+  },
+  login: (email, password, rememberMe=false) => {
+    return instance.post("auth/login", {email, password, rememberMe});
+  },
+  logOut: () => {
+    return instance.delete("auth/login");
   },
 };

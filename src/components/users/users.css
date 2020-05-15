@@ -5,10 +5,14 @@
   align-items: center;
 }
 .users{
+  overflow-wrap: break-word;
   padding: 20px;
   border: 1px solid burlywood;
   margin: 20px;
   border-radius: 10px;
+  width: 210px;
+  height: 290px;
+  position: relative;
 }
 .users:hover{
   box-shadow: inset 0 0 0 3px burlywood;
@@ -19,8 +23,8 @@
   height: 175px;
 }
 .users button {
-  padding: 10px;
-  margin: 10px;
+  position: absolute;
+  bottom: 18px;
 }
 .boldPage {
   font-weight: bold;

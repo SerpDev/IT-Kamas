@@ -2,8 +2,12 @@
    grid-area: header;
    background-color: #e0e0e0;
    margin-bottom: 15px;
-   padding: 5px;
+   padding: 5px 15px;
+   display: inline-flex;
+   justify-content: space-between;
+   text-align: center;
+   align-items: center;
 }
 .loginBlock{
-   float: right;
+   display: flex;
 }
